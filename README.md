@@ -1,15 +1,31 @@
 # İzer AI Webhook System
 
-A comprehensive multi-agent AI system for processing WhatsApp webhook messages with detailed chat history analysis, designed specifically for İzer's bicycle business.
+A comprehensive multi-agent AI system for processing WhatsApp messages with detailed chat history analysis, designed specifically for İzer's bicycle business. The system includes **WhatsApp Web.js integration** for real-time message capture and **AI-powered routing** to specialized agents.
 
 ## Features
 
-- **Real-time Message Processing**: Processes incoming WhatsApp webhook messages with chat history context
-- **AI-Powered Analysis**: Uses OpenAI GPT-4 for intelligent message categorization and urgency scoring
-- **Multi-Agent Architecture**: Routes messages to specialized agents based on content and priority
-- **MySQL Database Integration**: Stores messages, history, and analysis results for reporting
-- **Business Intelligence**: Prioritizes critical customers and groups for faster response times
-- **RESTful API**: Clean endpoints for webhook processing, health checks, and statistics
+### 🚀 Core Features
+- **WhatsApp Web.js Real-time Integration**: Live WhatsApp message capture with comprehensive chat history
+- **AI-Powered Analysis**: OpenAI GPT-4 for intelligent message categorization, urgency scoring, and sentiment analysis
+- **Multi-Agent Architecture**: Specialized AI agents for business workflow, technical support, and general inquiries
+- **MySQL Database Integration**: Complete message storage with analytics and reporting capabilities
+- **VIP Customer Detection**: Automatic identification and prioritization of İzer VIP customers
+- **RESTful API**: Production-ready webhook endpoints with health monitoring
+
+### 📱 WhatsApp Integration
+- **QR Code Authentication**: Secure WhatsApp Web.js connection via mobile app
+- **Real-time Message Capture**: Instant processing of incoming WhatsApp messages
+- **Chat History Analysis**: Full conversation context for better AI responses
+- **Media Message Support**: Handles images, documents, and media files
+- **VIP Customer Prioritization**: Special handling for important business contacts
+- **Message Filtering**: Smart filtering to process only relevant messages
+
+### 🤖 AI & Analytics
+- **Urgency Scoring**: 1-10 scale automated urgency assessment
+- **Category Classification**: sales, support, complaint, inquiry, technical, general
+- **Sentiment Analysis**: positive, negative, neutral, urgent sentiment detection
+- **Response Time Recommendations**: immediate, 1hour, 4hours, 24hours
+- **Business Intelligence**: Priority routing for critical customers and groups
 
 ## Architecture
 
@@ -64,6 +80,18 @@ mysql -u root -p < schema.sql
 ```bash
 python enhanced_webhook_integration.py
 ```
+
+6. Install Node.js dependencies for WhatsApp integration:
+```bash
+npm install whatsapp-web.js qrcode-terminal axios
+```
+
+7. Start WhatsApp Web.js connector:
+```bash
+node whatsapp_real_data_connector.js
+```
+
+8. Scan QR code with your WhatsApp mobile app to authenticate
 
 ## Configuration
 
@@ -236,6 +264,103 @@ The system provides comprehensive logging and monitoring:
 - Error handling and recovery
 
 Check `webhook_system.log` for detailed operation logs.
+
+## WhatsApp Web.js Integration
+
+### Features
+
+- **Real-time Message Capture**: Automatically captures all incoming WhatsApp messages
+- **QR Code Authentication**: Secure connection via WhatsApp Web QR code scanning
+- **Chat History Analysis**: Includes full conversation history for better AI context
+- **VIP Customer Detection**: Automatic identification and prioritization of important customers
+- **Media Message Support**: Handles images, documents, and other media files
+- **Message Filtering**: Smart filtering to process only relevant business messages
+
+### Setup and Usage
+
+1. **Install Node.js Dependencies**:
+   ```bash
+   npm install whatsapp-web.js qrcode-terminal axios
+   ```
+
+2. **Start the WhatsApp Connector**:
+   ```bash
+   node whatsapp_real_data_connector.js
+   ```
+
+3. **Authenticate with QR Code**:
+   - A QR code will be displayed in the terminal
+   - Open WhatsApp on your mobile device
+   - Go to Settings > Linked Devices > Link a Device
+   - Scan the QR code displayed in the terminal
+
+4. **System Activation**:
+   - Once authenticated, the system will automatically start capturing messages
+   - All incoming messages will be processed by the AI webhook system
+   - Real-time analysis and routing to appropriate agents will begin
+
+### VIP Customer Configuration
+
+Update the VIP customer list in `whatsapp_real_data_connector.js`:
+
+```javascript
+const IZER_VIP_NUMBERS = [
+    '905551234567',  // Important Customer 1
+    '905559876543',  // Important Customer 2
+    '905557894561'   // Important Customer 3
+];
+```
+
+### Message Processing Flow
+
+1. **Message Received**: WhatsApp Web.js captures incoming message
+2. **History Collection**: Retrieves last 20 messages for context
+3. **VIP Detection**: Checks if sender is a VIP customer
+4. **Webhook Formatting**: Converts to webhook format with full context
+5. **AI Analysis**: Sends to webhook system for AI processing
+6. **Agent Routing**: Routes to appropriate specialized agent
+7. **Response Generation**: AI generates appropriate response and actions
+
+### Testing
+
+Test the system with sample data:
+
+```bash
+# Send test messages to webhook system
+node whatsapp_real_data_connector.js --test
+
+# Or use the Python test script
+python3 send_real_whatsapp_data.py
+```
+
+### Production Deployment
+
+For production use:
+
+1. **Process Management**:
+   ```bash
+   pm2 start whatsapp_real_data_connector.js --name="whatsapp-connector"
+   pm2 save
+   ```
+
+2. **Monitoring**:
+   ```bash
+   pm2 logs whatsapp-connector
+   pm2 status
+   ```
+
+3. **Auto-restart on System Boot**:
+   ```bash
+   pm2 startup
+   pm2 save
+   ```
+
+### Troubleshooting
+
+- **Authentication Issues**: Delete `.wwebjs_auth` folder and re-authenticate
+- **Connection Problems**: Check internet connection and WhatsApp Web status
+- **Message Not Processing**: Verify webhook endpoint is running on port 8100
+- **Memory Issues**: Restart the connector process if memory usage is high
 
 ## License
 

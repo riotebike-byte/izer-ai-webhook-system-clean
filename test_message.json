@@ -1,0 +1,15 @@
+{
+  "message_id": "test_12345",
+  "chat_time": "2025-09-19T10:20:00Z",
+  "chat_name": "Test Customer",
+  "phone_number": "+905551234567",
+  "current_message": "I need technical support with my bicycle brake system",
+  "history": [
+    {
+      "sender": "Test Customer",
+      "content": "Hello, I have an issue with my bike",
+      "timestamp": "2025-09-19T10:19:00Z",
+      "type": "text"
+    }
+  ]
+}

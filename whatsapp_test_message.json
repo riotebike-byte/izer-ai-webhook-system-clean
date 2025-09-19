@@ -1,0 +1,21 @@
+{
+  "message_id": "wamid.12345_test",
+  "chat_time": "2025-09-19T10:30:00Z",
+  "chat_name": "İzer Müşteri",
+  "phone_number": "+905551234567",
+  "current_message": "Merhaba, bisikletimin freni çalışmıyor. Yardım edebilir misiniz?",
+  "history": [
+    {
+      "sender": "İzer Müşteri",
+      "content": "Selam, bir sorunum var",
+      "timestamp": "2025-09-19T10:28:00Z",
+      "type": "text"
+    },
+    {
+      "sender": "İzer Support",
+      "content": "Merhaba! Size nasıl yardımcı olabilirim?",
+      "timestamp": "2025-09-19T10:29:00Z",
+      "type": "text"
+    }
+  ]
+}
